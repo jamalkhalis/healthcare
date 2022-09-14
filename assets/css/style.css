@@ -39,8 +39,8 @@ html, body {
 }
 
 header {
-  background: url("./../img/img-7.jpg") no-repeat top center;
-  background-size: cover;
+/*  background: url("./../img/img-7.jpg") no-repeat top center;
+  background-size: cover;*/
 }
 
 .blur-background {
