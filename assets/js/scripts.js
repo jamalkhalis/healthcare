@@ -73,7 +73,7 @@ sendMessage.addEventListener('click', function(event) {
     message: messageFormInput
   }
 
-  fetch("http:50.62.180.70:8081/contact", {
+  fetch("https:50.62.180.70:8081/contact", {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(messageObject)
