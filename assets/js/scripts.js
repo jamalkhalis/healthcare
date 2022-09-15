@@ -40,6 +40,7 @@ const emailForm = document.getElementById('emailForm');
 const phoneForm = document.getElementById('phoneForm');
 const subjectForm = document.getElementById('subjectForm');
 const messageForm = document.getElementById('messageForm');
+const yourMessageIsSent = document.getElementById('yourMessageIsSent');
 
 
 nameForm.addEventListener('input', function(event) {
@@ -80,7 +81,17 @@ sendMessage.addEventListener('click', function(event) {
   })
   .then(response => response.text())
   .then(result => {
-    console.log(result)
+    console.log(result);
+
+    if (result) {
+      yourMessageIsSent.textContent = `Your message is sent! we will contact you, thank you so mush`;
+      nameForm.value = "";
+      emailForm.value = "";
+      phoneForm.value = "";
+      subjectForm.value = "";
+      messageForm.value = "";
+    }
+
   })
 
 
