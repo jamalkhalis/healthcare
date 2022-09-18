@@ -20,17 +20,16 @@ window.onscroll = function(e) {
 let nameFormInput = "";
 let emailFormInput = "";
 let phoneFormInput = "";
-let subjectFormInput = "";
-let messageFormInput = "";
+let dateFormInput = "";
+let addressFormInput = "";
 
 const sendMessage = document.getElementById('sendMessage');
 const nameForm = document.getElementById('nameForm');
 const emailForm = document.getElementById('emailForm');
 const phoneForm = document.getElementById('phoneForm');
-const subjectForm = document.getElementById('subjectForm');
-const messageForm = document.getElementById('messageForm');
+const dateForm = document.getElementById('dateForm');
+const addressForm = document.getElementById('addressForm');
 const yourMessageIsSent = document.getElementById('yourMessageIsSent');
-
 
 nameForm.addEventListener('input', function(event) {
   nameFormInput = event.target.value;
@@ -44,47 +43,68 @@ phoneForm.addEventListener('input', function(event) {
   phoneFormInput = event.target.value;
 })
 
-subjectForm.addEventListener('input', function(event) {
-  subjectFormInput = event.target.value;
+dateForm.addEventListener('input', function(event) {
+  dateFormInput = event.target.value;
 })
 
-messageForm.addEventListener('input', function(event) {
-  messageFormInput = event.target.value;
+addressForm.addEventListener('input', function(event) {
+  addressFormInput = event.target.value;
 })
+
+const lengthInputRadio = 10;
+
+const inputRadio = [];
+const commentsRadio = [];
+
+for (let j = 1; j <= lengthInputRadio; j++) {
+  inputRadio.push(`flexRadioDefault${j}`);
+  commentsRadio.push(`#comments${j}`);
+}
+
+const valueInputRadio = [];
+const valueCommentsRadio = [];
 
 
 sendMessage.addEventListener('click', function(event) {
+
+  for (let i = 0; i < lengthInputRadio; i++){
+      valueInputRadio.push(document.querySelector(`input[name="${inputRadio[i]}"]:checked`).value);
+      valueCommentsRadio.push(document.querySelector(`${commentsRadio[i]}`).value);
+  }
 
   let messageObject = {
     name: nameFormInput,
     emailAddress: emailFormInput,
     phone: phoneFormInput,
-    subject: subjectFormInput,
-    message: messageFormInput
+    date: dateFormInput,
+    address: addressFormInput,
+    valueInputRadio: valueInputRadio,
+    valueCommentsRadio: valueCommentsRadio
   }
-
-  fetch("https://babaccm-com-server.herokuapp.com/contact", {
+  console.log(messageObject)
+  fetch("https://babaccm-com-server.herokuapp.com/survey", {
+    mode: 'no-cors',
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(messageObject)
   })
   .then(response => response.text())
   .then(result => {
-    console.log(result);
+    console.log("result: ",result);
 
     if (result) {
-      yourMessageIsSent.textContent = `Your message is sent! we will contact you, thank you so mush!`;
+      yourMessageIsSent.textContent = `Your patient survey is sent, thank you so mush!`;
       nameForm.value = "";
       emailForm.value = "";
       phoneForm.value = "";
-      subjectForm.value = "";
-      messageForm.value = "";
+      dateForm.value = "";
+      addressForm.value = "";
 
       nameFormInput = "";
       emailFormInput = "";
       phoneFormInput = "";
-      subjectFormInput = "";
-      messageFormInput = "";
+      dateFormInput = "";
+      addressFormInput = "";
     }
 
   })

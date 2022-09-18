@@ -768,6 +768,22 @@
 	<script>
 		AOS.init();
 	</script>
-	<script type="text/javascript" src="./assets/js/scripts.js"></script>
+	<script type="text/javascript" src="./assets/js/scripts.js">
+	</script>
+
+	<script type="text/javascript">
+		const img1 = document.querySelector('#img-1');
+		const img1Parent = document.querySelector("#img-1-Parent");
+
+		let heightImg1 = img1.clientHeight;
+		  img1Parent.style.paddingTop = String(heightImg1)+"px";
+
+		window.addEventListener("resize", function(event) {
+
+		  heightImg1 = img1.clientHeight;
+		  img1Parent.style.paddingTop = String(heightImg1)+"px";
+
+		})
+	</script>
 </body>
 </html>
