@@ -38,14 +38,31 @@ html, body {
 	--clr-gray-3: #e3eaf2;
 }
 
-header {
-/*  background: url("./../img/img-7.jpg") no-repeat top center;
-  background-size: cover;*/
-}
-
 .blur-background {
   background: rgba(246, 145, 31, 0.2);
 }
+
+.header-image-services {
+  background: url("./../img/img-7.jpg") no-repeat top center;
+  background-size: cover;
+}
+
+.header-image-about-us {
+  background: url("./../img/img-16.jpg") no-repeat top center;
+  background-size: cover;
+}
+
+.header-image-contact {
+  background: url("./../img/img-9.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.header-image-faq {
+  background: url("./../img/img-19.jpg") no-repeat top center;
+  background-size: cover;
+}
+
+
 
 .clr-green {
 	color: var(--clr-green) !important;
