@@ -61,14 +61,19 @@ for (let j = 1; j <= lengthInputRadio; j++) {
   commentsRadio.push(`#comments${j}`);
 }
 
-const valueInputRadio = [];
-const valueCommentsRadio = [];
+let valueInputRadio = [];
+let valueCommentsRadio = [];
 
 
 sendMessage.addEventListener('click', function(event) {
-
+  let avoidError = "";
   for (let i = 0; i < lengthInputRadio; i++){
-      valueInputRadio.push(document.querySelector(`input[name="${inputRadio[i]}"]:checked`).value);
+      try {
+        avoidError = document.querySelector(`input[name="${inputRadio[i]}"]:checked`).value;
+      } catch(e) {
+        avoidError = "";
+      }
+      valueInputRadio.push(avoidError);
       valueCommentsRadio.push(document.querySelector(`${commentsRadio[i]}`).value);
   }
 
@@ -83,7 +88,6 @@ sendMessage.addEventListener('click', function(event) {
   }
   console.log(messageObject)
   fetch("https://babaccm-com-server.herokuapp.com/survey", {
-    mode: 'no-cors',
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(messageObject)
@@ -91,7 +95,6 @@ sendMessage.addEventListener('click', function(event) {
   .then(response => response.text())
   .then(result => {
     console.log("result: ",result);
-
     if (result) {
       yourMessageIsSent.textContent = `Your patient survey is sent, thank you so mush!`;
       nameForm.value = "";
@@ -109,6 +112,8 @@ sendMessage.addEventListener('click', function(event) {
 
   })
 
+  valueInputRadio = [];
+  valueCommentsRadio = [];
 
 
 })
